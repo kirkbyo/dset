@@ -177,6 +177,23 @@ dsets('should merge array at path notation', () => {
 	]);
 });
 
+dsets('should be able to insert at root', () => {
+	let input = {};
+	dset(input, [], { hero: { id: "A" }});
+	assert.equal(input, {
+		hero: {
+			id: "A"
+		}
+	});
+});
+
+dsets('should ignore root merge of value without key', () => {
+	let input = {};
+	dset(input, [], "A");
+	assert.instance(input, Object);
+	assert.equal(input, {});
+});
+
 dsets.run();
 
 // ---
